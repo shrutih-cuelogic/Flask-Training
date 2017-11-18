@@ -1,2 +1,5 @@
+*.pyc
 
-Flask-Pracs/flask_app/*
+# Distribution / packaging
+
+flask_app/
