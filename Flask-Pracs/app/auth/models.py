@@ -29,16 +29,16 @@ class User(db.Model):
     password = db.Column(db.String(192),  nullable=False)
 
     # Authorisation Data: role & status
-    role = db.Column(db.SmallInteger, nullable=False)
-    status = db.Column(db.SmallInteger, nullable=False)
+    # role = db.Column(db.SmallInteger, nullable=False)
+    # status = db.Column(db.SmallInteger, nullable=False)
 
-    # New instance instantiation procedure
-    def __init__(self, name, email, password):
+    # # New instance instantiation procedure
+    # def __init__(self, name, email, password):
 
-        self.name = name
-        self.username = username
-        self.email = email
-        self.password = password
+    #     self.name = name
+    #     self.username = username
+    #     self.email = email
+    #     self.password = password
 
     def __str__(self):
         return '<User %r>' % (self.username)

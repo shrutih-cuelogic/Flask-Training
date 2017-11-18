@@ -1,7 +1,5 @@
 # Import flask and template operators
 from flask import Flask
-# from flask_mysqldb import MySQL
-# #Import SQLAlchemy
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 
@@ -18,6 +16,8 @@ admin = Admin(app, name='sample', template_mode='bootstrap3')
 app.config.from_object('config')
 # Define the database object which is imported
 # by modules and controllers
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost/testuser'
+app.config['SECRET_KEY'] = 'b240ac48e41e84a4278d195092289a8bdb08556b22f6760d'
 db = SQLAlchemy(app)
 
 from app.auth import views, models
