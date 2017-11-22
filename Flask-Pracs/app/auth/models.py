@@ -42,3 +42,38 @@ class User(db.Model):
 
     def __str__(self):
         return '<User %r>' % (self.username)
+
+
+# Define a User model
+class Blog(db.Model):
+
+    __tablename__ = 'user_blog'
+
+    id = db.Column(db.Integer, primary_key=True)
+
+
+    title, description, content, publication_date, published, published_by.
+    # Name
+    name = db.Column(db.String(128),  nullable=False)
+
+    #User Name
+    username  = db.Column(db.String(128),  nullable=False)
+    # Identification Data: email & password
+    email = db.Column(db.String(128),  nullable=False,
+                                            unique=True)
+    password = db.Column(db.String(192),  nullable=False)
+
+    # Authorisation Data: role & status
+    # role = db.Column(db.SmallInteger, nullable=False)
+    # status = db.Column(db.SmallInteger, nullable=False)
+
+    # # New instance instantiation procedure
+    # def __init__(self, name, email, password):
+
+    #     self.name = name
+    #     self.username = username
+    #     self.email = email
+    #     self.password = password
+
+    def __str__(self):
+        return '<User %r>' % (self.username)

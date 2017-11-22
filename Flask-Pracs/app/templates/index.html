@@ -2,12 +2,41 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-  <div class="jumbotron text-center">
-    <h1>Welcome To FlaskApp</h1>
-    <p class="lead">This application is built on the Python Flask framework and is the focus for the "Python Flask From Scratch" YouTube series</p>
-    {% if session.logged_in == NULL %}
-      <a href="/register" class="btn btn-primary btn-lg">Register</a>
-      <a href="/login" class="btn btn-success btn-lg">Login</a>
-    {% endif %}
-  </div>
+
+<div class="container">
+    <div class="header">
+        <h3 class="text-muted">Python Flask App</h3>
+    </div>
+
+    <div class="jumbotron">
+        <h1>Blog App</h1>
+        <p class="lead"></p>
+        <p><a class="btn btn-lg btn-success" href="/register" role="button">Register Here</a>
+        </p>
+    </div>
+
+    <div class="row marketing">
+        <div class="col-lg-6">
+            <h4>Blog 1</h4>
+            <p>No man has a good enough memory to be a successful liar - Abraham Lincoln</p>
+
+            <h4>Blog 2</h4>
+            <p>A successful man is one who makes more money than his wife can spend. A successful woman is one who can find such a man.</p>
+
+            <h4>Blog 3</h4>
+            <p>I can resist everything except temptation.</p>
+        <br>
+        <hr>
+        <div class="col-lg-6">
+            <h4>Blog 1</h4>
+            <p>No man has a good enough memory to be a successful liar - Abraham Lincoln</p>
+
+            <h4>Blog 2</h4>
+            <p>A successful man is one who makes more money than his wife can spend. A successful woman is one who can find such a man.</p>
+
+            <h4>Blog 3</h4>
+            <p>I can resist everything except temptation.</p>
+        </div>
+    </div>
+</div>
 {% endblock %}

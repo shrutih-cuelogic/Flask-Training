@@ -72,6 +72,9 @@ def login():
 def blog_home():
     return render_template('auth/blog_home.html')
 
+@auth.route('/showAddBlog')
+def showAddBlog():
+    return render_template('auth/add_blog.html')
 
 @auth.route('/logout')
 # @login_required
