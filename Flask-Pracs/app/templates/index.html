@@ -7,13 +7,20 @@
     <div class="header">
         <h3 class="text-muted">Python Flask App</h3>
     </div>
-
-    <div class="jumbotron">
-        <h1>Blog App</h1>
-        <p class="lead"></p>
-        <p><a class="btn btn-lg btn-success" href="/register" role="button">Register Here</a>
-        </p>
-    </div>
+    {% if current_user.is_authenticated %}
+        <div class="jumbotron">
+            <h1>Blog App</h1>
+            <p class="lead"></p>
+            </p>
+        </div>
+    {% else %}
+        <div class="jumbotron">
+            <h1>Blog App</h1>
+            <p class="lead"></p>
+            <p><a class="btn btn-lg btn-success" href="/register" role="button">Register Here</a>
+            </p>
+        </div>
+    {% endif %}
 
     <div class="row marketing">
         <div class="col-lg-6">
