@@ -6,9 +6,11 @@ from app.auth.forms import RegisterForm
 # from passlib.hash import sha256_crypt
 # from functools import wraps
 import json
+from datetime import datetime
 from . import auth
 from .. import db
 from models import User, Blog
+
 
 # Define the blueprint: 'auth', set its url prefix: app.url/auth
 
@@ -83,7 +85,7 @@ def add_blog():
                 flash('You have successfully created your blog', 'success')
                 return redirect(url_for('auth.blog_home'))
             else:
-                return render_template('error.html',error = 'An error occurred!')
+                return render_template('error.html',error = 'No data found')
         else:
             flash('Please enter blog details' , 'error')
 
@@ -97,10 +99,12 @@ def getBlog():
                 blogs_list = []
                 for blog in blogs:
                     blog_dict = {
+                        'id' : blog.id,
                         'user_id' : blog.user_id,
                         'title' : blog.title,
                         'description' : blog.description,
-                        'publication_date' : str(blog.publication_date)
+                        'blog_created_on' : str(blog.blog_created_on),
+                        'blog_updated_on' : str(blog.blog_updated_on)
                     }
                     blogs_list.append(blog_dict)
 
@@ -111,6 +115,45 @@ def getBlog():
             return render_template('error.html', error = 'Unauthorized Access')
     except Exception as e:
         return render_template('error.html', error = str(e))
+
+@auth.route('/getBlogById',methods=['POST'])
+def getBlogById():
+    try:
+        if current_user:
+            blog_id = request.form['id']
+            blogs = Blog.query.filter_by(id = blog_id, 
+                user_id = current_user.id
+                ).first()
+ 
+            blog = []
+            blog.append({'id':blogs.id, 
+                'title':blogs.title, 
+                'description':blogs.description})
+ 
+            return json.dumps(blog)
+        else:
+            return render_template('error.html', error = 'Unauthorized Access')
+    except Exception as e:
+        return render_template('error.html',error = str(e))
+
+@auth.route('/updateBlog', methods=['POST'])
+def updateBlog():
+    try:
+        import pdb; pdb.set_trace();
+        if current_user:
+            blog_id = request.form['id']
+            blog = Blog.query.filter_by(id=blog_id).first()
+            blog.title = request.form['title']
+            blog.description = request.form['description']
+
+            if blog:
+                db.session.commit()
+                flash('Blog Updated Successfully')
+                return json.dumps({'status':'OK'})
+            else:
+                return json.dumps({'status':'ERROR'})
+    except Exception as e:
+        return json.dumps({'status':'Unauthorized access'})
 
 @auth.route('/logout')
 @login_required

@@ -41,4 +41,30 @@
 }
 .list-group {
   margin-bottom: 30px;
+  background-color: #337ab7;
+      padding-right: 15px;
+}
+.list-group .list-group-item-date {
+  font-size: 14px;
+}
+.blogList {
+  width: 100%;
+  background-color: #dedede;
+
+}
+.jumbotron p {
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 200;
+}
+.editBlog {
+  color: #dedede;
+}
+.text-white {
+  color: #fff;
+}
+.updateBtn a{
+  display: inline-block;
+  margin: 10px;
+  font-size: 18px;
 }

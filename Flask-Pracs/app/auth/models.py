@@ -1,5 +1,6 @@
 # Import the database object (db) from the main application module
 # We will define this inside /app/__init__.py in the next sections.
+from datetime import datetime
 from app import db, lm
 from flask_login import UserMixin
 
@@ -60,7 +61,10 @@ class Blog(db.Model):
 
     description  = db.Column(db.String(128),  nullable=False)
 
-    publication_date = db.Column(db.DateTime,  default=db.func.current_timestamp())
+    blog_created_on = db.Column(db.DateTime(), default=datetime.utcnow)
+
+    blog_updated_on = db.Column(db.DateTime(), default=datetime.utcnow,
+                                          onupdate=datetime.utcnow)
 
     published_status = db.Column(db.Boolean, default=False)
 
