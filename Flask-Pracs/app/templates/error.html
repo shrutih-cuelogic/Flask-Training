@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h1>Unauthorized Access:: Flask Blog App</h1>
+<link href="/static/css/login.css" rel="stylesheet">
+<script src="static/js/jquery-3.1.1.js"></script>
+<div class="container">
+  <div class="header">
+    <nav>
+      <ul class="nav nav-pills pull-right">
+        <li role="presentation" class="active"><a href="#">Home</a></li>
+        <li role="presentation"><a href="/showSignin">Sign In</a></li>
+        <li role="presentation"><a href="/showSignUp">Sign Up</a></li>
+      </ul>
+    </nav>
+    <img src="/static/images/Flask_Icon.png" alt="Flask_Icon.png"/ >
+  </div>
+  <div class="jumbotron">
+    <h2>{{error}}</h2>
+  </div>
+</div>
+{% endblock %}

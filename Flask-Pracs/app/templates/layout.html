@@ -4,14 +4,26 @@
     <meta charset="utf-8">
     <title>MyFlaskApp</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <style type="text/css"></style>
+    <link href="static/css/login.css" rel="stylesheet">
   </head>
   <body>
     {% include 'includes/_navbar.html' %} 
     <div class="container">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="alert alert-danger alert-dismissable fade in">
+            <ul class=flashes>
+              {% for category, message in messages %}
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <li class="{{ category }}">{{ message }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endwith %}
       {% block body %}{% endblock %}
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </body>
 </html>
