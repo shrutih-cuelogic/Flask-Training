@@ -3,6 +3,7 @@ $(document).ready(function() {
 });
 
 var blogServices = (function($) {
+    var selected_blog_id = 0;
 
     function GetBlogs() {
         $.ajax({
@@ -19,19 +20,22 @@ var blogServices = (function($) {
 
     function setBlogHTML(res) {
         var blogObj = JSON.parse(res);
+        var blogHtml = '';
         for (var i = 0; i < blogObj.length; i++) {
-            var blogHtml = '<div class="list-group"><div class="row"><div class="col-sm-10"><a class="list-group-item active"><h4 class="list-group-item-heading">' + blogObj[i].title + '</h4><p class="list-group-item-text">' + blogObj[i].description + '</p><h5 class="list-group-item-date">Created on:' + blogObj[i].blog_created_on +
-                '</h5></a></div><div class="col-sm-2 text-right"><div class="updateBtn"><a href="javascript:void(0)" data-id =' + blogObj[i].id + ' onclick="blogServices.editBlog(this)" class="text-white"><span class="glyphicon glyphicon-pencil"></span></a><a href="/deleteblog/' + blogObj[i].id + '" class="text-white"><span class="glyphicon glyphicon-trash"></span></a></div></div></div></div>'
-            $('.jumbotron').append(blogHtml);
+            blogHtml += '<div class="list-group"><div class="row" id="blog_' + blogObj[i].id + '"><div class="col-sm-10"><a class="list-group-item active"><h4 class="list-group-item-heading" id="id-title-' + blogObj[i].id + '">' + blogObj[i].title + '</h4><p class="list-group-item-text" id="id-desc-' + blogObj[i].id + '">' + blogObj[i].description + '</p><h5 class="list-group-item-date" id="id-createdon">Created on:' + blogObj[i].blog_created_on +
+                '</h5></a></div><div class="col-sm-2 text-right"><div class="updateBtn"><a href="javascript:void(0)" data-id =' + blogObj[i].id + ' onclick="blogServices.editBlog(this)" class="text-white"><span class="glyphicon glyphicon-pencil"></span></a><a href="/deleteblog/' + blogObj[i].id + '" class="text-white"><span class="glyphicon glyphicon-trash"></span></a></div></div></div></div>';
         }
+
+        var mainDiv = '<div id="list-blog">' + blogHtml + '</div>';
+        $('.jumbotron').append(mainDiv);
     }
 
     function editBlog(elm) {
-        localStorage.setItem('editId', $(elm).attr('data-id'));
+        selected_blog_id = $(elm).attr('data-id');
         $.ajax({
             url: '/getBlogById',
             data: {
-                id: $(elm).attr('data-id')
+                id: selected_blog_id
             },
             type: 'POST',
             success: function(res) {
@@ -40,7 +44,6 @@ var blogServices = (function($) {
                 //Populate the Pop up
                 $('#editTitle').val(data[0]['title']);
                 $('#editDescription').val(data[0]['description']);
-
                 // Trigger the Pop Up
                 $('#editModal').modal('show');
             },
@@ -50,6 +53,11 @@ var blogServices = (function($) {
         });
     }
 
+    function updateBlogdetails(blog_id) {
+        $('#id-title-'+blog_id).html($('#editTitle').val());
+        $('#id-desc-'+blog_id).html($('#editDescription').val());
+    }
+
     $(function() {
         $('#btnUpdate').click(function() {
             $.ajax({
@@ -57,13 +65,18 @@ var blogServices = (function($) {
                 data: {
                     title: $('#editTitle').val(),
                     description: $('#editDescription').val(),
-                    id: localStorage.getItem('editId')
+                    id: selected_blog_id
                 },
                 type: 'POST',
                 success: function(res) {
                     console.log(res)
+                    console.log(selected_blog_id);
+                    //    setBlogHTML(res)
+                    //    $('#id-title').text(res[0]['title']);
+                    // $('#id-desc').text(res[0]['description']);
+                    updateBlogdetails(selected_blog_id);
+                    selected_blog_id = 0;
                     $('#editModal').modal('hide');
-                    GetBlogs();
                 },
                 error: function(error) {
                     console.log(error);
