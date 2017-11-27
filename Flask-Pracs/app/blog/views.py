@@ -43,7 +43,7 @@ def add_blog():
 
 @blog_mod.route('/getBlog')
 @login_required
-def getBlog():
+def get_blog():
     try:
         if current_user:
             blogs = current_user.blogs.all()
@@ -69,7 +69,7 @@ def getBlog():
         return render_template('error.html', error = str(e))
 
 @blog_mod.route('/getBlogById',methods=['POST'])
-def getBlogById():
+def get_blog_by_id():
     try:
         if current_user:
             blog_id = request.form['id']
@@ -89,9 +89,8 @@ def getBlogById():
         return render_template('error.html',error = str(e))
 
 @blog_mod.route('/updateBlog', methods=['POST'])
-def updateBlog():
+def update_blog():
     try:
-        # import pdb; pdb.set_trace();
         if current_user:
             blog_id = request.form['id']
             blog = Blog.query.filter_by(id=blog_id).first()
@@ -105,3 +104,21 @@ def updateBlog():
                 return json.dumps({'status':'ERROR'})
     except Exception as e:
         return json.dumps({'status':'Unauthorized access'})
+
+@blog_mod.route('/deleteBlog', methods=['POST'])
+def delete_blog():
+    try:
+        import pdb; pdb.set_trace();
+        if current_user:
+            blog_id = request.form['id']
+            blog = Blog.query.filter_by(id=blog_id, user_id=current_user.id).delete()
+            if blog is not None:
+                db.session.commit()
+                flash('Blog Deleted Successfully')
+                return json.dumps({'status':'OK'})
+            else:
+                return json.dumps({'status':'ERROR'})
+        else:
+            return render_template('error.html',error = 'Unauthorized Access')
+    except Exception as e:
+        return json.dumps({'status':str(e)})

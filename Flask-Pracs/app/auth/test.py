@@ -17,20 +17,30 @@ class TestCase(unittest.TestCase):
 		cls.app_context.push()
 		db.create_all();
 
-
 	@classmethod
 	def tearDownClass(cls):
 	 	db.session.remove()
 		db.drop_all()
 
-
 	def test_index_url(self):
 		response = self.app.get('/')
 		self.assertTrue(response.status_code,200)
 
-	# def test_addblog_url(self):
-	# 	response = self.app.get('/addBlog')
-	# 	self.assertTrue(response.status_code,401)
+	def test_register_url(self):
+		response = self.app.get('/register')
+		self.assertTrue(response.status_code,200)
+
+	def test_register_url(self):
+		response = self.app.get('/register')
+		self.assertTrue(response.status_code,200)
+
+	def test_login_url(self):
+	response = self.app.get('/register')
+	self.assertTrue(response.status_code,200)
+
+	def test_logout_url(self):
+		response = self.app.get('/register')
+		self.assertTrue(response.status_code,200)
 
 	def test_register_form_invalid(self):
 		data = { 'name' : 'testname',

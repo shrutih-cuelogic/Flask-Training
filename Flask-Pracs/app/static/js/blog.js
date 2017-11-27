@@ -22,8 +22,8 @@ var blogServices = (function($) {
         var blogObj = JSON.parse(res);
         var blogHtml = '';
         for (var i = 0; i < blogObj.length; i++) {
-            blogHtml += '<div class="list-group"><div class="row" id="blog_' + blogObj[i].id + '"><div class="col-sm-10"><a class="list-group-item active"><h4 class="list-group-item-heading" id="id-title-' + blogObj[i].id + '">' + blogObj[i].title + '</h4><p class="list-group-item-text" id="id-desc-' + blogObj[i].id + '">' + blogObj[i].description + '</p><h5 class="list-group-item-date" id="id-createdon">Created on:' + blogObj[i].blog_created_on +
-                '</h5></a></div><div class="col-sm-2 text-right"><div class="updateBtn"><a href="javascript:void(0)" data-id =' + blogObj[i].id + ' onclick="blogServices.editBlog(this)" class="text-white"><span class="glyphicon glyphicon-pencil"></span></a><a href="/deleteblog/' + blogObj[i].id + '" class="text-white"><span class="glyphicon glyphicon-trash"></span></a></div></div></div></div>';
+            blogHtml += '<div class="list-group" id="id-list-' + blogObj[i].id + '"><div class="row" id="blog_' + blogObj[i].id + '"><div class="col-sm-10"><a class="list-group-item active"><h4 class="list-group-item-heading" id="id-title-' + blogObj[i].id + '">' + blogObj[i].title + '</h4><p class="list-group-item-text" id="id-desc-' + blogObj[i].id + '">' + blogObj[i].description + '</p><h5 class="list-group-item-date" id="id-createdon">Created on:' + blogObj[i].blog_created_on +
+                '</h5></a></div><div class="col-sm-2 text-right"><div class="updateBtn"><a href="javascript:void(0)" data-id =' + blogObj[i].id + ' onclick="blogServices.editBlog(this)" class="text-white"><span class="glyphicon glyphicon-pencil"></span></a><a href="javascript:void(0)" data-id =' + blogObj[i].id + ' onclick="blogServices.confirmDelete(this)" class="text-white"><span class="glyphicon glyphicon-trash"></span></a></div></div></div></div>';
         }
 
         var mainDiv = '<div id="list-blog">' + blogHtml + '</div>';
@@ -54,8 +54,8 @@ var blogServices = (function($) {
     }
 
     function updateBlogdetails(blog_id) {
-        $('#id-title-'+blog_id).html($('#editTitle').val());
-        $('#id-desc-'+blog_id).html($('#editDescription').val());
+        $('#id-title-' + blog_id).html($('#editTitle').val());
+        $('#id-desc-' + blog_id).html($('#editDescription').val());
     }
 
     $(function() {
@@ -69,11 +69,6 @@ var blogServices = (function($) {
                 },
                 type: 'POST',
                 success: function(res) {
-                    console.log(res)
-                    console.log(selected_blog_id);
-                    //    setBlogHTML(res)
-                    //    $('#id-title').text(res[0]['title']);
-                    // $('#id-desc').text(res[0]['description']);
                     updateBlogdetails(selected_blog_id);
                     selected_blog_id = 0;
                     $('#editModal').modal('hide');
@@ -85,10 +80,43 @@ var blogServices = (function($) {
         });
     });
 
+    function confirmDelete(elm) {
+        selected_blog_id = $(elm).attr('data-id');
+        $('#deleteModal').modal();
+    }
+
+    function deleteBlogdetails(blog_id) {
+        $('#id-list-' + blog_id).remove();
+    }
+
+    function deleteBlog() {
+        $.ajax({
+            url: '/deleteBlog',
+            data: { id: selected_blog_id },
+            type: 'POST',
+            success: function(res) {
+                var result = JSON.parse(res);
+                if (result.status == 'OK') {
+                    $('#deleteModal').modal('hide');
+                    deleteBlogdetails(selected_blog_id);
+                    selected_blog_id = 0;
+                } else {
+                    alert(result.status);
+                }
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+
     var services = {};
     services.GetBlogs = GetBlogs;
     services.setBlogHTML = setBlogHTML;
     services.editBlog = editBlog;
+    services.deleteBlog = deleteBlog;
+    services.confirmDelete = confirmDelete;
+    services.deleteBlog = deleteBlog;
     return services;
 
 })(jQuery);
