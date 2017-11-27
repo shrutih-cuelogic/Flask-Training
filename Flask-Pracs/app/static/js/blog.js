@@ -27,7 +27,7 @@ var blogServices = (function($) {
         }
 
         var mainDiv = '<div id="list-blog">' + blogHtml + '</div>';
-        $('.jumbotron').append(mainDiv);
+        $('.blogList').append(mainDiv);
     }
 
     function editBlog(elm) {

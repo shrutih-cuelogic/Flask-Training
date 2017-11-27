@@ -22,7 +22,6 @@ def show_add_blog():
 @blog_mod.route('/addBlog',methods=['POST'])
 @login_required
 def add_blog():
-    # published_status = False
     if current_user:
         user = current_user
         if request.form['inputTitle'] and request.form['inputDescription']:
@@ -33,7 +32,6 @@ def add_blog():
             db.session.add(blog_obj)
             if blog_obj:
                 db.session.commit()
-                # published_status = True
                 flash('You have successfully created your blog', 'success')
                 return redirect(url_for('blog_mod.blog_home'))
             else:

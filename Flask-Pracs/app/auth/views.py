@@ -21,7 +21,6 @@ def index():
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm(request.form)
-    # import pdb; pdb.set_trace();
     if request.method == 'POST' and form.validate():
         user_obj = User(name = form.name.data, 
             email = form.email.data, 
@@ -38,7 +37,6 @@ def register():
 
         return redirect(url_for('auth.login'))
     return render_template('auth/register.html', form=form)
-
 
 # Login
 @auth.route('/login',methods=['GET','POST'])
