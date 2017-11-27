@@ -30,18 +30,18 @@ class TestCase(unittest.TestCase):
 		response = self.app.get('/register')
 		self.assertTrue(response.status_code,200)
 
-	def test_register_url(self):
-		response = self.app.get('/register')
-		self.assertTrue(response.status_code,200)
-
 	def test_login_url(self):
-	response = self.app.get('/register')
+	response = self.app.get('/login')
 	self.assertTrue(response.status_code,200)
 
 	def test_logout_url(self):
-		response = self.app.get('/register')
+		response = self.app.get('/logout')
 		self.assertTrue(response.status_code,200)
 
+	def test_view_profile_url(self):
+		response = self.app.get('/showProfile')
+		self.assertTrue(response.status_code,200)
+	
 	def test_register_form_invalid(self):
 		data = { 'name' : 'testname',
 		'email' : 'shrutihdemo@gmail.com'
@@ -56,13 +56,12 @@ class TestCase(unittest.TestCase):
 		'email' : 'shrutihdemo@gmail.com',
 		'password': '123',
 		'confirm' : '123',
-		'gender' : 'Female',
 		}
 		register_form = RegisterForm(data = data)
 		register_form.validate()
 		self.assertEqual(register_form.validate(),True)
 
-	def test_register_user_valid(self):
+	def test_register_user_valid_msg(self):
 		data = { 'name' : 'testname',
 		'username' : 'shrutih',
 		'email' : 'shrutihdemo@gmail.com',

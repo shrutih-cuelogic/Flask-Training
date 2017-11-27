@@ -30,17 +30,17 @@ class TestCase(unittest.TestCase):
 		self.assertTrue(response.status_code,401)
 
 	def test_getblog_url(self):
-		response = self.app.get('/')
+		response = self.app.get('/getBlog')
 		self.assertTrue(response.status_code,200)
 
 	def test_getblogby_id_url(self):
-		response = self.app.get('/')
+		response = self.app.get('/getBlogById')
 		self.assertTrue(response.status_code,200)
 
 	def test_updateblog_url(self):
-		response = self.app.get('/')
+		response = self.app.get('/updateBlog')
 		self.assertTrue(response.status_code,200)
 
 	def test_deleteblog_url(self):
-		response = self.app.get('/')
+		response = self.app.get('/deleteBlog')
 		self.assertTrue(response.status_code,200)

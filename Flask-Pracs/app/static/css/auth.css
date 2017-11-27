@@ -111,7 +111,17 @@
     padding-top: 35px;
     padding-bottom: 70px;
 }
-
+.profileEditform {
+    min-height: 20px;
+    width: 150%;
+    margin-left: -128px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 /*>>>>>*/
 

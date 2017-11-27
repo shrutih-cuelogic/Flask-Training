@@ -3,6 +3,7 @@
 from datetime import datetime
 from app import db, lm
 from flask_login import UserMixin
+from hashlib import md5
 
 # # Define a base model for other database tables to inherit
 # class Base(db.Model):
@@ -19,33 +20,33 @@ class User(db.Model, UserMixin):
 
     __tablename__ = 'auth_user'
 
-    id = db.Column(db.Integer, 
+    id = db.Column(db.Integer,
         primary_key=True, 
         autoincrement=True
     )
-    name = db.Column(db.String(128),  
+    name = db.Column(db.String(128),
         nullable=False
     )
-    username  = db.Column(db.String(128),  
+    username  = db.Column(db.String(128),
         nullable=False
     )
-    email = db.Column(db.String(128),  
+    email = db.Column(db.String(128),
         nullable=False,
         unique=True
     )
-    password = db.Column(db.String(192),  
+    password = db.Column(db.String(192),
         nullable=False
     )
-    address = db.Column(db.String(192),  
-        nullable=False
+    address = db.Column(db.String(192),
+        nullable=True
     )
-    contact = db.Column(db.Integer, 
-        nullable=False
+    contact = db.Column(db.Integer,
+        nullable=True
     )
-    gender = db.Column(db.String(50),  
-        nullable=False
+    gender = db.Column(db.String(50),
+        nullable=True
     )
-    blogs = db.relationship('Blog', 
+    blogs = db.relationship('Blog',
         backref='author',
         cascade="all,delete",
         lazy='dynamic'
@@ -53,6 +54,9 @@ class User(db.Model, UserMixin):
 
     def __str__(self):
         return '<User %r>' % (self.username)
+
+    def avatar(self, size):
+        return 'http://www.gravatar.com/avatar/%s?d=mm&s=%d' % (md5(self.email.encode('utf-8')).hexdigest(), size)
 
 
 @lm.user_loader
