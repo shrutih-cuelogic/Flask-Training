@@ -1,14 +1,12 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<link href="static/css/auth.css" rel="stylesheet">
-<script src="static/js/jquery-3.1.1.js"></script>
-<script src="static/js/blog.js"></script>
+<script src="static/blog/js/blog.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<div class="container">
-  <div class="well blogList">
-    <h2 class="text-center">Welcome {{current_user.name}} Your blogs are listed here...!!!</h2>
+<div class="container loginContainer">
+  <div class="blogList">
+    <h3 class="text-center">Welcome {{current_user.name}} Your blogs are listed here...!!!</h3>
     <br>
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
       <div class="modal-dialog">

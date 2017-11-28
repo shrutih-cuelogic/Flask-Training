@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title>MyFlaskApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="static/common/js/jquery-3.1.1.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="static/css/auth.css" rel="stylesheet">
+    <link href="static/auth/css/auth.css" rel="stylesheet">
+    <link href="static/blog/css/blog.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   </head>
   <body>
     {% include 'includes/_navbar.html' %} 
-    <div class="container">
+    <div class="container mainLayout">
       {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
           <div class="alert alert-success alert-dismissable fade in">
@@ -23,6 +30,10 @@
       {% endwith %}
       {% block body %}{% endblock %}
     </div>
+    <footer class="w3-teal text-center fixed-bottom">
+      <p class="linkEmail">Posted by: Shruti Hiremath</p>
+      <p class="linkEmail">Contact information: <a href="mailto:shruti.hiremath@cuelogic.com">shruti.hiremath@cuelogic.com</a></p>
+    </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </body>

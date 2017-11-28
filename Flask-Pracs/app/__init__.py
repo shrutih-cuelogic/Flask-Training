@@ -5,7 +5,10 @@ from flask_admin import Admin
 
 from flask_admin.contrib.sqla import ModelView
 from flask_login import LoginManager
+from werkzeug.utils import secure_filename
 
+# UPLOAD_FOLDER = '/static/blog/images/uploads'
+# ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 # Import a module / component using its blueprint handler variable (mod_auth)
 

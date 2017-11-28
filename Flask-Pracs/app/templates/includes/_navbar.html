@@ -1,5 +1,5 @@
-<header>
-  <nav>
+<header class="w3-container w3-teal">
+  <nav class="navbar">
     <div class="container">
       <div class="navbar-header">
         <a class="navbar-brand" href="/">MyFlaskApp</a>
@@ -7,13 +7,13 @@
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
           {% if current_user.is_authenticated %}
-            <li><a href="{{ url_for('auth.view_profile',username=current_user.username)}}">View Profile</a></li>
-            <li><a href="/blogHome">View Blog</a></li>
-            <li><a href="/showAddBlog">Add Blog</a></li>
-            <li><a href="/logout">Logout</a></li>
+            <li class="navbar-header"><a href="{{ url_for('auth.view_profile',username=current_user.username)}}">View Profile</a></li>
+            <li class="navbar-header"><a href="/blogHome">View Blog</a></li>
+            <li class="navbar-header"><a href="/showAddBlog">Add Blog</a></li>
+            <li class="navbar-header"><a href="/logout">Logout</a></li>
           {% else %}
-            <li><a href="/register">Register</a></li>
-            <li><a href="/login">Login</a></li>
+            <li class="navbar-header"><a href="/register">Register</a></li>
+            <li class="navbar-header"><a href="/login">Login</a></li>
           {% endif %}
         </ul>
       </div>

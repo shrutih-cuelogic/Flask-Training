@@ -1,26 +1,26 @@
 {% extends 'layout.html' %}
 {% block body %}  
-<!--   <div class="container">
-    <div class="col-sm-4 col-sm-offset-4 login-form"> -->
-<div class="col-sm-6 col-sm-offset-3">
-  <h3 class="text-center">Login</h3>
-  <div class="Loginform">
-    {% if error %}
-      <p class=error><strong>Error:</strong> {{ error }}
-    {% endif %}
-    <form action="" method="POST" form-signin>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" name="email" class="form-control" value={{request.form.email}}>
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" name="password" class="form-control" value={{request.form.password}}>
-      </div>
-      <div class="submitBtn">
-        <input type="submit" class="btn btn-primary" value="Submit">
-      </div>
-    </form>
-  </div>
-</div>    
+<div class="loginContainer">
+  <div class="col-sm-6 col-sm-offset-3">
+    <h3 class="text-center">Login</h3>
+    <div class="Loginform">
+      {% if error %}
+        <p class=error><strong>Error:</strong> {{ error }}
+      {% endif %}
+      <form action="" method="POST" form-signin>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" class="form-control" value={{request.form.email}}>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" name="password" class="form-control" value={{request.form.password}}>
+        </div>
+        <div class="submitBtn">
+          <input type="submit" class="btn btn-primary" value="Submit">
+        </div>
+      </form>
+    </div>
+  </div> 
+</div>  
 {% endblock %}
