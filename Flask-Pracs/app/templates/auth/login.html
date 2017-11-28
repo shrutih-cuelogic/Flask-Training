@@ -1,11 +1,10 @@
 {% extends 'layout.html' %}
-
-{% block body %}
-  <div class="header">
-    <img src="static/images/flask_icon.png" alt="Flask_Icon.png" style="width:100px;" />
-  </div>
-  <div class="jumbotron">
-    <h2>Login</h2>
+{% block body %}  
+<!--   <div class="container">
+    <div class="col-sm-4 col-sm-offset-4 login-form"> -->
+<div class="col-sm-6 col-sm-offset-3">
+  <h3 class="text-center">Login</h3>
+  <div class="Loginform">
     {% if error %}
       <p class=error><strong>Error:</strong> {{ error }}
     {% endif %}
@@ -18,7 +17,10 @@
         <label>Password</label>
         <input type="password" name="password" class="form-control" value={{request.form.password}}>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <div class="submitBtn">
+        <input type="submit" class="btn btn-primary" value="Submit">
+      </div>
     </form>
   </div>
+</div>    
 {% endblock %}

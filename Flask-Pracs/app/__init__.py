@@ -25,11 +25,13 @@ lm = LoginManager(app)
 lm.session_protection ='Strong'
 
 from app.auth import views, models
+from app.blog import views, models
 from app.auth import auth as auth_blueprint
+from app.blog import blog_mod as blog_blueprint
 
 # Register blueprint(s)
 app.register_blueprint(auth_blueprint)
-
+app.register_blueprint(blog_blueprint)
 
 # Build the database:
 # This will create the database file using SQLAlchemy

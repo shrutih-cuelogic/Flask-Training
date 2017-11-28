@@ -6,11 +6,11 @@ from app.auth.forms import RegisterForm
 # from passlib.hash import sha256_crypt
 # from functools import wraps
 import json
+from datetime import datetime
 from . import auth
 from .. import db
-from models import User, Blog
+from models import User
 
-# Define the blueprint: 'auth', set its url prefix: app.url/auth
 
 # Index
 @auth.route('/')
@@ -21,7 +21,6 @@ def index():
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm(request.form)
-    # import pdb; pdb.set_trace();
     if request.method == 'POST' and form.validate():
         user_obj = User(name = form.name.data, 
             email = form.email.data, 
@@ -39,7 +38,6 @@ def register():
         return redirect(url_for('auth.login'))
     return render_template('auth/register.html', form=form)
 
-
 # Login
 @auth.route('/login',methods=['GET','POST'])
 def login():
@@ -53,64 +51,7 @@ def login():
         return redirect(url_for('auth.login'))
     login_user(registered_user, True)
     flash('Logged in successfully')
-    return redirect(url_for('auth.blog_home') or url_for('index'))
-
-@auth.route('/blogHome')
-@login_required
-def blog_home():
-    return render_template('auth/blog_home.html')
-
-@auth.route('/showAddBlog')
-@login_required
-def show_add_blog():
-    return render_template('auth/add_blog.html')
-
-@auth.route('/addBlog',methods=['POST'])
-@login_required
-def add_blog():
-    # published_status = False
-    if current_user:
-        user = current_user
-        if request.form['inputTitle'] and request.form['inputDescription']:
-            blog_obj = Blog(title = request.form['inputTitle'], 
-                description = request.form['inputDescription'],
-                user_id = user.id
-                )
-            db.session.add(blog_obj)
-            if blog_obj:
-                db.session.commit()
-                # published_status = True
-                flash('You have successfully created your blog', 'success')
-                return redirect(url_for('auth.blog_home'))
-            else:
-                return render_template('error.html',error = 'An error occurred!')
-        else:
-            flash('Please enter blog details' , 'error')
-
-@auth.route('/getBlog')
-@login_required
-def getBlog():
-    try:
-        if current_user:
-            blogs = current_user.blogs.all()
-            if blogs:
-                blogs_list = []
-                for blog in blogs:
-                    blog_dict = {
-                        'user_id' : blog.user_id,
-                        'title' : blog.title,
-                        'description' : blog.description,
-                        'publication_date' : str(blog.publication_date)
-                    }
-                    blogs_list.append(blog_dict)
-
-                return json.dumps(blogs_list)
-            else:
-                return render_template('error.html', error = 'Current user has no blogs')
-        else:
-            return render_template('error.html', error = 'Unauthorized Access')
-    except Exception as e:
-        return render_template('error.html', error = str(e))
+    return redirect(url_for('blog_mod.blog_home') or url_for('index'))
 
 @auth.route('/logout')
 @login_required
