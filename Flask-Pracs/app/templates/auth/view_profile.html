@@ -1,10 +1,12 @@
-{% extends 'layout.html' %} {% block body %}
-<div class="loginContainer">
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container loginContainer">
     <h3 class="text-center">User Profile</h3>
     <br>
-    <div class="well profileEditform">
+    <div class="well RegisterForm">
         <div class="row">
-            <div class="col-md-offset-2 col-md-4">
+            <div class="col-md-offset-2 col-md-2">
                 <img src="{{ current_user.avatar(128) }}">
             </div>
             <div class="col-md-4">

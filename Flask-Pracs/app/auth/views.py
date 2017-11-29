@@ -10,17 +10,57 @@ from datetime import datetime
 from . import auth
 from .. import db
 from models import User
+from app.blog.models import Blog
 
 
 # Index
 @auth.route('/')
 def index():
-    return render_template('index.html')
+    blogs = Blog.query.order_by(Blog.blog_updated_on.desc()).all()
+    if blogs:
+        blogs_list = []
+        for blog in blogs:
+            blog_dict = {
+                'id' : blog.id,
+                'user_id' : blog.user_id,
+                'title' : blog.title,
+                'description' : blog.description,
+                'blog_created_on' : str(blog.blog_created_on),
+                'blog_updated_on' : str(blog.blog_updated_on)
+            }
+            blogs_list.append(blog_dict)
+    else:
+        flash('There are no blogs yet')
+
+    return render_template('index.html', blogs_list=blogs_list)
+
+# View Full Blog
+@auth.route('/blog_track/<blog_id>')
+def blog_track(blog_id):
+    # import pdb; pdb.set_trace();
+    blogs = Blog.query.filter_by(id=blog_id)
+    if blogs:
+        blogs_list = []
+        for blog in blogs:
+            all_blog_user = User.query.filter_by(id=blog.user_id)
+            for user in all_blog_user:
+                blog_dict = {
+                    'id' : blog.id,
+                    'user_id' : blog.user_id,
+                    'title' : blog.title,
+                    'description' : blog.description,
+                    'blog_created_on' : str(blog.blog_created_on),
+                    'blog_updated_on' : str(blog.blog_updated_on),
+                    'created_by' : user.name,
+                }
+                blogs_list.append(blog_dict)
+    else:
+        flash('There are no blogs yet')
+    return render_template('auth/view_all_blogs.html', blogs_list=blogs_list)
 
 # User Register
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
-    import pdb
     form = RegisterForm(request.form)
     if request.method == 'POST' and form.validate():
         user_obj = User(name = form.name.data, 

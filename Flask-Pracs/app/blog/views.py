@@ -41,10 +41,10 @@ def add_blog():
 
 @blog_mod.route('/getBlog')
 @login_required
-def get_blog():
+def get_currentuser_blog():
     try:
         if current_user:
-            blogs = current_user.blogs.all()
+            blogs = current_user.blogs.order_by(Blog.blog_updated_on.desc()).all()
             if blogs:
                 blogs_list = []
                 for blog in blogs:
@@ -106,7 +106,6 @@ def update_blog():
 @blog_mod.route('/deleteBlog', methods=['POST'])
 def delete_blog():
     try:
-        import pdb; pdb.set_trace();
         if current_user:
             blog_id = request.form['id']
             blog = Blog.query.filter_by(id=blog_id, user_id=current_user.id).delete()

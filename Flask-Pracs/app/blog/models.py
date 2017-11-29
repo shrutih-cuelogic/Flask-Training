@@ -19,7 +19,7 @@ class Blog(db.Model):
         db.ForeignKey('auth_user.id'),
         nullable=False
     )
-    description  = db.Column(db.String(128),  
+    description  = db.Column(db.String(),
         nullable=False
     )
     blog_created_on = db.Column(db.DateTime(), 
