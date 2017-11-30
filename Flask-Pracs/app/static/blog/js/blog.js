@@ -43,8 +43,10 @@ var blogServices = (function($) {
                 var data = JSON.parse(res);
                 //Populate the Pop up
                 $('#editTitle').val(data[0]['title']);
-                $('#editDescription').val(data[0]['description']);
+                $('#editDescription').val($("<div>").html(data[0]['description']).text());
                 // Trigger the Pop Up
+                $('#modalError').remove();
+                $('#modalDescError').remove();
                 $('#editModal').modal('show');
             },
             error: function(error) {
@@ -60,6 +62,16 @@ var blogServices = (function($) {
 
     $(function() {
         $('#btnUpdate').click(function() {
+            if(!$('#editTitle').val()){
+                if(!$('#titleId').length){
+                    return $('#titleId').append('<span class="error">Please enter blog title.</span>');
+                }
+            }
+            if (!$('#editDescription').val()) {
+               if(!$('#descriptionId').length){
+                    return $('#descriptionId').append('<span class="error">Please enter blog description.</span>');
+                }
+            }
             $.ajax({
                 url: '/updateBlog',
                 data: {
@@ -72,6 +84,8 @@ var blogServices = (function($) {
                     updateBlogdetails(selected_blog_id);
                     selected_blog_id = 0;
                     $('#editModal').modal('hide');
+                    $('#modalError').remove();
+                    $('#modalDescError').remove();
                 },
                 error: function(error) {
                     console.log(error);

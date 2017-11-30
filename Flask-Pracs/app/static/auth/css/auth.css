@@ -2,6 +2,12 @@ body .mainLayout {
     position:relative;
     min-height: 500px;
 }
+.mainLayout .errorMsg {
+    margin-top: 150px;
+    margin-left: 75px;
+    margin-right: 75px;
+    /* margin-bottom: 51px; */
+}
 .form-signin {
     max-width: 330px;
     padding: 15px;

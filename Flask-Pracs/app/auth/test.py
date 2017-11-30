@@ -97,18 +97,33 @@ class TestCase(unittest.TestCase):
 		user_profile.validate()
 		self.assertEqual(user_profile.validate(),True)
 
-	def test_test_user_profile_form_valid_msg(self):
-		data = { 'name' : 'testname',
-		'username' : 'shrutih',
-		'email' : 'shrutihdemo@gmail.com',
-		'password': '1234',
-		'address': 'Chandni chowk, Nagpur',
-		'contact': '87742688864',
-		'gender' : 'Female'
-		}
-		response = self.app.post('/register', 
-			data=data, 
-			follow_redirects=True
-		)
-		print response.data
-		assert "You are now registered and can log in" in response.data
+	def test_login_valid(self):
+		email="shrutihdemo@gmail.com"
+		password="1234"
+		response = self.app.post('/login', data=dict(
+				email=email,
+				password=password
+			), follow_redirects=True)
+		assert "Hi, test successfull" in response.data
+
+	def test_logout(self):
+		email="shrutihdemo@gmail.com"
+		password="1234"
+		response = self.app.post('/login', data=dict(
+				email=email,
+				password=password
+			), follow_redirects=True)
+		response = self.app.get('/logout', 
+						follow_redirects=True)
+		assert "You have been logged out" in response.data
+
+
+	def test_login_invalid(self):
+		email="shruti@gmail.com"
+		password="1234"
+		response = self.app.post('/login', data=dict(
+				email=email,
+				password=password
+			), follow_redirects=True)
+		assert "Invalid Username and Password" in response.data
+
