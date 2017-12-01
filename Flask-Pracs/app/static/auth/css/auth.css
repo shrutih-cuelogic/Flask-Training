@@ -1,0 +1,332 @@
+body .mainLayout {      
+    position:relative;
+    min-height: 500px;
+}
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+    font-weight: normal;
+}
+
+.form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.trash {
+    color: rgb(209, 91, 71);
+}
+
+.panel-body .checkbox {
+    display: inline-block;
+    margin: 0px;
+}
+.jumbotron p {
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 200;
+}
+
+.editBlog {
+    color: #dedede;
+}
+
+.text-white {
+    color: #fff;
+}
+
+.mainContainer h2 {
+    font-size: 45px;
+    color: #334e5a;
+}
+.mainContainer img {
+    width: 100%;
+}
+.loginContainer {
+    margin-top: 100px;
+}
+.container-fluid {
+    padding-top: 35px;
+    padding-bottom: 70px;
+}
+.profileEditform {
+   /* min-height: 20px;
+    width: 150%;
+    margin-left: -128px;
+    padding: 19px;
+    margin-bottom: 70px;
+    background-color: rgba(181, 181, 181, 0.98);
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);*/
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: rgba(181, 181, 181, 0.98);
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/*>>>>>*/
+
+header {
+    background-color: rgba(158, 158, 158, 0.44);
+    min-height: 60px;
+    position:fixed;
+    z-index:1;
+}
+
+.login-form h3 {
+    margin-bottom: 50px;
+}
+
+.error {
+    font-size: 12px;
+    color: #ff0000;
+}
+
+.Loginform {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: rgba(181, 181, 181, 0.98);
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.Loginform .submitBtn {
+    margin: 20px auto;
+    text-align: center;
+}
+
+.RegisterForm {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: rgba(181, 181, 181, 0.98);
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.RegisterForm .submitBtn {
+    margin: 20px auto;
+    text-align: center;
+}
+
+.container-fluid {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 48px;
+    font-weight: 600;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+}
+.navbar-header a {
+    color: #ffffff;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: medium;
+}
+header {
+    position: fixed;
+    height: 50px;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
+footer {
+    position: relative;
+    z-index: 1;
+    height: 90px;
+    width: 100%;
+    padding-top: 20px;
+    background-color: #555;
+    color: #fff;
+    overflow: hidden;
+    margin-top: 50px;
+}
+.linkEmail {
+    color: #ffffff;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: medium;
+/*    position: fixed;   
+*/}
+.linkEmail a {
+    color: rgb(253, 219, 116);
+    font-family: sans-serif;
+    font-size: medium;
+}
+.footer img {
+    width: 100%;
+}
+#blog-portfolio {
+    margin-bottom: 7em;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    background: #717171;
+    float: left;
+    width: 100%;
+    margin-left: -3px;
+}
+#blog-portfolio .jumbotron {
+    background:  #ffffff;
+    width: 100%;
+    margin-bottom: 7em;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    float: left;
+    margin-left: -3px;
+}
+#blog-portfolio .jumbotron .blog-portfolio-item {
+    float: left;
+    width: 100%;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+#blog-portfolio .jumbotron .blog-portfolio-item .blog-portfolio-figure {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    overflow: hidden;
+}
+#blog-portfolio .jumbotron .blog-portfolio-item .blog-portfolio-description {
+    background: #fff;
+    padding: 2em;
+    font-size: 20px;
+    line-height: 20px;
+}
+#blog-portfolio  .jumbotron .blog-portfolio-item .blog-portfolio-description, #blog-portfolio .blog-portfolio-item .blog-portfolio-figure {
+    width: 50%;
+    margin-bottom: 50px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+#blog-portfolio .jumbotron .blog-portfolio-item .blog-portfolio-description h2 {
+    font-family: "Roboto Slab", arial, sans-serif;
+    font-size: 30px;
+    line-height: 34px;
+    font-weight: 300;
+}
+#blog-portfolio .jumbotron .blog-portfolio-item .blog-portfolio-description p {
+    margin-bottom: 1.5em;
+    margin: 0 0 10px;
+}
+#blog-services {
+    padding: 7em 0;
+    background: #fafafa;
+}
+#blog-services .container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.section-lead {
+    font-size: 40px;
+    line-height: 50px;
+    margin-bottom: 1em;
+    font-family: "Roboto Slab", arial, sans-serif;
+}
+#blog-services .blog-service {
+    margin-bottom: 30px;
+    float: left;
+}
+#blog-services .blog-service .blog-icon {
+    float: left;
+    width: 20%;
+}
+#blog-services .blog-service .blog-icon span {
+    font-size: 40px;
+    color: #e32929;
+}
+#blog-services .blog-service .blog-desc {
+    width: 70%;
+    float: right;
+}
+#blog-services .blog-service .blog-desc h3 {
+    margin-top: 0;
+    font-size: 18px;
+}
+#blog-services .blog-service .blog-desc p {
+    margin-bottom: 1.5em;
+    margin: 0 0 10px;
+}
+.blog-intro {
+    padding: 3em 0;
+}
+.blog-intro .intro-lead {
+    font-size: 40px;
+    line-height: 60px;
+    font-family: "Roboto Slab", arial, sans-serif;
+}
+.banner {
+    max-height: 360px;
+    overflow: hidden;
+    position: relative;
+     margin-top: 50px; 
+}
+.banner img{
+    width: 100%;
+}
+.banner:before {
+    content: "";
+    background-color: rgba(0,0,0,0.3);
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}

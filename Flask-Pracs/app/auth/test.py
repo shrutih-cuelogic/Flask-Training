@@ -1,6 +1,6 @@
 import unittest
 from flask import Flask,url_for
-from .. import app,db,auth
+from . import app,db,auth
 from app.blog import blog_mod
 from ..auth.models import User
 from ..blog.models import Blog
@@ -30,18 +30,18 @@ class TestCase(unittest.TestCase):
 		response = self.app.get('/register')
 		self.assertTrue(response.status_code,200)
 
-	def test_register_url(self):
-		response = self.app.get('/register')
-		self.assertTrue(response.status_code,200)
-
 	def test_login_url(self):
-	response = self.app.get('/register')
-	self.assertTrue(response.status_code,200)
+		response = self.app.get('/login')
+		self.assertTrue(response.status_code,200)
 
 	def test_logout_url(self):
-		response = self.app.get('/register')
+		response = self.app.get('/logout')
 		self.assertTrue(response.status_code,200)
 
+	def test_view_profile_url(self):
+		response = self.app.get('/showProfile')
+		self.assertTrue(response.status_code,200)
+	
 	def test_register_form_invalid(self):
 		data = { 'name' : 'testname',
 		'email' : 'shrutihdemo@gmail.com'
@@ -56,18 +56,55 @@ class TestCase(unittest.TestCase):
 		'email' : 'shrutihdemo@gmail.com',
 		'password': '123',
 		'confirm' : '123',
-		'gender' : 'Female',
 		}
 		register_form = RegisterForm(data = data)
 		register_form.validate()
 		self.assertEqual(register_form.validate(),True)
 
-	def test_register_user_valid(self):
+	def test_register_user_valid_msg(self):
 		data = { 'name' : 'testname',
 		'username' : 'shrutih',
 		'email' : 'shrutihdemo@gmail.com',
 		'password': '123',
 		'confirm' : '123',
+		}
+		response = self.app.post('/register', 
+			data=data, 
+			follow_redirects=True
+		)
+		print response.data
+		assert "You are now registered and can log in" in response.data
+
+	def test_user_profile_form_invalid(self):
+		data = { 'name' : 'testname',
+		'email' : 'shrutihdemo@gmail.com',
+		'username': '',
+		}
+		user_profile = ProfileEditForm(data = data)
+		user_profile.validate()
+		self.assertEqual(user_profile.validate(),False)
+
+	def test_user_profile_form_valid(self):
+		data = { 'name' : 'testname',
+		'username' : 'shrutih',
+		'email' : 'shrutihdemo@gmail.com',
+		'password': '1234',
+		'address': 'Chandni chowk, Nagpur',
+		'contact': '87742688864',
+		'gender' : 'Female'
+		}
+		user_profile = ProfileEditForm(data = data)
+		user_profile.validate()
+		self.assertEqual(user_profile.validate(),True)
+
+	def test_test_user_profile_form_valid_msg(self):
+		data = { 'name' : 'testname',
+		'username' : 'shrutih',
+		'email' : 'shrutihdemo@gmail.com',
+		'password': '1234',
+		'address': 'Chandni chowk, Nagpur',
+		'contact': '87742688864',
+		'gender' : 'Female'
 		}
 		response = self.app.post('/register', 
 			data=data, 

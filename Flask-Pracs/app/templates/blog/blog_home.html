@@ -1,18 +1,12 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<!-- 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="static/css/jumbotron-narrow.css"> -->
-
-<link href="static/css/auth.css" rel="stylesheet">
-<script src="static/js/jquery-3.1.1.js"></script>
-<script src="static/js/blog.js"></script>
+<script src="static/blog/js/blog.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<div class="container">
-  <div class="well blogList">
-    <h2 class="text-center">Welcome {{current_user.name}} Your blogs are listed here...!!!</h2>
+<div class="container loginContainer">
+  <div class="blogList">
+    <h3 class="text-center">Welcome {{current_user.name}} Your blogs are listed here...!!!</h3>
     <br>
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -41,19 +35,20 @@
       </div>
     </div>
   </div>
-</div>
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header" style="text-align:center;">
-        <h4 class="modal-title" style="color:red;" id="deleteModalLabel">You are going to Delete this forever !!</h4>
-      </div>
-     
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" onclick="blogServices.deleteBlog()">Delete</button>
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="text-align:center;">
+          <h4 class="modal-title" style="color:red;" id="deleteModalLabel">You are going to Delete this forever !!</h4>
+        </div>
+       
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" onclick="blogServices.deleteBlog()">Delete</button>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
 {% endblock %}
