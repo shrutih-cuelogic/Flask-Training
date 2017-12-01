@@ -3,6 +3,7 @@ from flask_login import current_user , login_required
 # from passlib.hash import sha256_crypt
 # from functools import wraps
 import json
+import re
 from datetime import datetime
 from . import blog_mod
 from .. import db
@@ -23,11 +24,11 @@ def show_add_blog():
 @login_required
 def add_blog():
     if current_user:
-        user = current_user
         if request.form['inputTitle'] and request.form['inputDescription']:
+            blog_desc = re.sub('<[^>]*>', '', request.form['inputDescription'])
             blog_obj = Blog(title = request.form['inputTitle'], 
-                description = request.form['inputDescription'],
-                user_id = user.id
+                description = blog_desc,
+                user_id = current_user.id
                 )
             db.session.add(blog_obj)
             if blog_obj:

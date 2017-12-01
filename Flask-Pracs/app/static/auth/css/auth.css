@@ -2,6 +2,12 @@ body .mainLayout {
     position:relative;
     min-height: 500px;
 }
+.mainLayout .errorMsg {
+    margin-top: 150px;
+    margin-left: 75px;
+    margin-right: 75px;
+    /* margin-bottom: 51px; */
+}
 .form-signin {
     max-width: 330px;
     padding: 15px;
@@ -80,15 +86,6 @@ body .mainLayout {
     padding-bottom: 70px;
 }
 .profileEditform {
-   /* min-height: 20px;
-    width: 150%;
-    margin-left: -128px;
-    padding: 19px;
-    margin-bottom: 70px;
-    background-color: rgba(181, 181, 181, 0.98);
-    border: 1px solid #e3e3e3;
-    border-radius: 4px;
-    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);*/
     min-height: 20px;
     padding: 19px;
     margin-bottom: 20px;
@@ -164,6 +161,14 @@ header {
     right: 0;
     margin: 0 auto;
     text-align: center;
+    z-index: 999;
+}
+.centered p {
+    font-size: 20px;
+}
+.centered p a {
+    font-size: 30px;
+    color: #e32929;
 }
 .navbar-header a {
     color: #ffffff;
@@ -183,7 +188,6 @@ footer {
     z-index: 1;
     height: 90px;
     width: 100%;
-    padding-top: 20px;
     background-color: #555;
     color: #fff;
     overflow: hidden;
@@ -313,20 +317,21 @@ footer {
     font-family: "Roboto Slab", arial, sans-serif;
 }
 .banner {
-    max-height: 360px;
+    max-height: 400px;
     overflow: hidden;
     position: relative;
-     margin-top: 50px; 
+    margin-top: 50px; 
 }
 .banner img{
     width: 100%;
 }
 .banner:before {
     content: "";
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.4);
     display: block;
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
+    z-index: 99;
 }

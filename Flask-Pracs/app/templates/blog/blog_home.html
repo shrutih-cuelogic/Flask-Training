@@ -1,13 +1,15 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<script src="static/blog/js/blog.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<script src="static/blog/js/blog.js"></script>
 <div class="container loginContainer">
-  <div class="blogList">
+  {% if current_user.blogs.count() == 0 %}
+    <h3 class="text-center">Welcome {{current_user.name}} You have no blogs yet</h3>
+  {% else %}
     <h3 class="text-center">Welcome {{current_user.name}} Your blogs are listed here...!!!</h3>
-    <br>
+  {% endif %}
+  <div class="blogList">
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -17,13 +19,14 @@
           </div>
           <div class="modal-body">
             <form role="form">
-              <div class="form-group">
+              <div class="form-group" id="titleId">
                 <label for="recipient-name" class="control-label">Title:</label>
-                <input type="text" class="form-control" id="editTitle">
+                <input type="text" class="form-control" id="editTitle" required>
               </div>
-              <div class="form-group">
+              <div class="form-group" id="descriptionId">
                 <label for="message-text" class="control-label">Description:</label>
-                <textarea class="form-control" id="editDescription"></textarea>
+                <textarea class="form-control" id="editDescription" required></textarea>
+                <p id="modalDescError"></p>
               </div>
             </form>
           </div>
