@@ -4,6 +4,7 @@ from .. import app,db,auth
 from app.blog import blog_mod
 from ..blog.models import Blog
 from ..auth.forms import RegisterForm
+from app.blog.blog_factory import BlogFactory
 
 
 class TestCase(unittest.TestCase):
@@ -14,12 +15,13 @@ class TestCase(unittest.TestCase):
 		cls.app = app.test_client()
 		cls.app_context = app.test_request_context()
 		cls.app_context.push()
-		db.create_all();
+		# db.create_all();
+		BlogFactory.create();
 
 	@classmethod
 	def tearDownClass(cls):
 	 	db.session.remove()
-		db.drop_all()
+		BlogFactory.drop_all()
 
 	def test_index_url(self):
 		response = self.app.get('/')

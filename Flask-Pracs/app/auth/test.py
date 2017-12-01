@@ -5,9 +5,12 @@ from app.blog import blog_mod
 from ..auth.models import User
 from ..blog.models import Blog
 from ..auth.forms import RegisterForm
+from flask_fixtures import FixturesMixin
+from app.auth.auth_factory import UserFactory
 
 
-class TestCase(unittest.TestCase):
+class TestCase(unittest.TestCase, FixturesMixin):
+	fixtures = ['auth_users.json']
 
 	@classmethod
 	def setUpClass(cls):
@@ -15,7 +18,8 @@ class TestCase(unittest.TestCase):
 		cls.app = app.test_client()
 		cls.app_context = app.test_request_context()
 		cls.app_context.push()
-		db.create_all();
+		# db.create_all();
+		UserFactory.create();
 
 	@classmethod
 	def tearDownClass(cls):

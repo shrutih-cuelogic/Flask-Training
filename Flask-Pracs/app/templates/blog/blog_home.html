@@ -4,9 +4,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="static/blog/js/blog.js"></script>
 <div class="container loginContainer">
-  <div class="blogList">
+  {% if current_user.blogs.count() == 0 %}
+    <h3 class="text-center">Welcome {{current_user.name}} You have no blogs yet</h3>
+  {% else %}
     <h3 class="text-center">Welcome {{current_user.name}} Your blogs are listed here...!!!</h3>
-    <br>
+  {% endif %}
+  <div class="blogList">
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
