@@ -1,4 +1,4 @@
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms import (
 StringField, 
 TextAreaField, 
@@ -13,7 +13,7 @@ validators
 GENDER =[('Male','M'),('Female','F')]
 
 # Register Form Class
-class RegisterForm(Form):
+class RegisterForm(FlaskForm):
     """ Registerform for registering users """
     name = StringField('*Name', [validators.Length(min=1, max=50)])
     username = StringField('Username', [validators.Length(min=4, max=25)])
@@ -25,7 +25,7 @@ class RegisterForm(Form):
     confirm = PasswordField('*Confirm Password',[validators.DataRequired()])
     address = TextAreaField('Address', [validators.optional(), validators.length(max=200)])
 
-class ProfileEditForm(Form):
+class ProfileEditForm(FlaskForm):
     """ PrfoileEditform for editing users profile """
     username = StringField("Username",[validators.DataRequired()])
     email = StringField("Email",[validators.DataRequired(), validators.Length(1,64),validators.Email()])

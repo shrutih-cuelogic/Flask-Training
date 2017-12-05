@@ -230,6 +230,14 @@ footer {
     float: left;
     margin-left: -3px;
 }
+#blog-portfolio .jumbotron a {
+    background: #009688;
+    color: #fff;
+    width: 100px;
+    height: 40px;
+    margin-left: 18px;
+}
+
 #blog-portfolio .jumbotron .blog-portfolio-item {
     float: left;
     width: 100%;
@@ -334,4 +342,36 @@ footer {
     position: absolute;
     top: 0;
     z-index: 99;
+}
+blockquote {
+    padding: 5px 20px;
+    margin: 20px 0px 20px;
+    font-size: 13.5px;
+    border-left: 5px solid #009688;
+}
+.Userimage {
+    width: 60px;
+}
+blockquote h4 {
+   font-size: 16px;
+}
+blockquote span {
+   font-size: 12px;
+}
+.replyCmnt {
+    margin-top: 12px;
+}
+blockquote .btn-change {
+    color: #fff;
+    background-color: #009688;
+    border-color: #009688;
+}
+blockquote .btn:hover {
+    color: #fff;
+    text-decoration: none;
+}
+.user_reply-form .btn-change {
+    color: #fff;
+    background-color: #009688;
+    border-color: #009688;
 }

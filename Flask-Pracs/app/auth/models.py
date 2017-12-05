@@ -51,6 +51,11 @@ class User(db.Model, UserMixin):
         cascade="all,delete",
         lazy='dynamic'
     )
+    user_comments = db.relationship('UserComment',
+        backref='commenter',
+        cascade="all,delete",
+        lazy='dynamic'
+    )
 
     def __str__(self):
         return '<User %r>' % (self.username)

@@ -40,6 +40,7 @@ app.register_blueprint(blog_blueprint)
 # This will create the database file using SQLAlchemy
 admin.add_view(ModelView(models.User, db.session))
 admin.add_view(ModelView(models.Blog, db.session))
+admin.add_view(ModelView(models.UserComment, db.session))
 
 from app.auth.models import *
 

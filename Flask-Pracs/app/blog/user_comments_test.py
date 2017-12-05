@@ -49,7 +49,7 @@ class UserCommentTests(unittest.TestCase):
 				password=password
 			), follow_redirects=True)
 
-		blog =Blog(title="blog user comment test",content="We are testing user comments for blog",blog_author=new_user)
+		blog =Blog(title="blog user comment test",description="We are testing user comments for blog",user_id=new_user.id)
 		db.session.add(blog)
 		db.session.commit()
 
@@ -74,7 +74,7 @@ class UserCommentTests(unittest.TestCase):
 				password=password
 			), follow_redirects=True)
 
-		blog =Blog(title="blog user comment test",content="We are testing user comments for blog",blog_author=new_user)
+		blog =Blog(title="blog user comment test",description="We are testing user comments for blog",user_id=new_user.id)
 		db.session.add(blog)
 		db.session.commit()
 		user_comment = UserComment.query.filter_by(content="This is user comments for blog").first()

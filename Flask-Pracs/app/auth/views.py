@@ -3,6 +3,8 @@ from flask_login import login_user , logout_user , current_user , login_required
 #from data import Articles
 # from flask_mysqldb import MySQL
 from app.auth.forms import RegisterForm, ProfileEditForm
+from app.blog.forms import UserCommentForm
+
 # from passlib.hash import sha256_crypt
 # from functools import wraps
 import json
@@ -10,15 +12,15 @@ from datetime import datetime
 from . import auth
 from .. import db
 from models import User
-from app.blog.models import Blog
+from app.blog.models import Blog, UserComment
 
 
 # Index
 @auth.route('/')
 def index():
     blogs = Blog.query.order_by(Blog.blog_updated_on.desc()).all()
+    blogs_list = []
     if blogs:
-        blogs_list = []
         for blog in blogs:
             blog_dict = {
                 'id' : blog.id,
@@ -35,28 +37,37 @@ def index():
     return render_template('index.html', blogs_list=blogs_list)
 
 # View Full Blog
-@auth.route('/blog_track/<blog_id>')
+@auth.route('/blog_track/<blog_id>', methods=['GET', 'POST'])
 def blog_track(blog_id):
-    # import pdb; pdb.set_trace();
-    blogs = Blog.query.filter_by(id=blog_id)
-    if blogs:
-        blogs_list = []
-        for blog in blogs:
-            all_blog_user = User.query.filter_by(id=blog.user_id)
-            for user in all_blog_user:
-                blog_dict = {
-                    'id' : blog.id,
-                    'user_id' : blog.user_id,
-                    'title' : blog.title,
-                    'description' : blog.description,
-                    'blog_created_on' : str(blog.blog_created_on),
-                    'blog_updated_on' : str(blog.blog_updated_on),
-                    'created_by' : user.name,
-                }
-                blogs_list.append(blog_dict)
-    else:
-        flash('There are no blogs yet')
-    return render_template('auth/view_all_blogs.html', blogs_list=blogs_list)
+
+    blogs = Blog.query.filter_by(id=blog_id).first()
+    blog_comments = blogs.user_comments.all()
+    blogs_list = []
+    form = UserCommentForm()
+
+    if form.validate_on_submit():
+        if form.parent_comment_id.data == "":
+            user_comment = UserComment(content=form.content.data, 
+                blog=blogs.id, 
+                user_id=current_user.id
+                )
+            db.session.add(user_comment)
+            db.session.commit()
+            blog_comments = blogs.user_comments.all()
+        else:
+            user_comment = UserComment(content=form.content.data, 
+                blog=blogs.id, 
+                user_id=current_user.id, 
+                parent_comment_id=int(form.parent_comment_id.data)
+            )
+            db.session.add(user_comment)
+            db.session.commit()
+            blog_comments = blogs.user_comments.all()
+        return redirect(url_for('auth.blog_track',blog_id=blogs.id))
+    return render_template('auth/view_all_blogs.html', 
+        blogs=blogs, 
+        blog_comments=blog_comments,
+        form=form)
 
 # User Register
 @auth.route('/register', methods=['GET', 'POST'])
