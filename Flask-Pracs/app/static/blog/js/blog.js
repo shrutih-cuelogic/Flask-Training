@@ -21,10 +21,10 @@ var blogServices = (function($) {
     function setBlogHTML(res) {
         var blogObj = JSON.parse(res);
         var blogHtml = '';
-        var length = 300;
+        var length = 200;
         for (var i = 0; i < blogObj.length; i++) {
             var blog_description = blogObj[i].description.substring(0, length);
-            console.log(blogObj[i].title);
+
             blogHtml += '<div class="media-blog" id="id-list-' + blogObj[i].id + '"><div class="media" id="blog_' + blogObj[i].id + '"><div class="media-left media-top"><a href="#"><img class="media-object" src="static/blog/images/woods.jpeg" alt="..."></a></div><div class="media-body"><div class="media-left-text"><h4 class="media-heading" id="id-title-' + blogObj[i].id + '">' + blogObj[i].title + '</h4><p class="list-group-item-text" id="id-desc-' + blogObj[i].id + '">' + blog_description + '...<a href="/blog_track/' + blogObj[i].id + '">Read More</a></p></br><p class="list-group-item-date" id="id-createdon"><strong>Created on: </strong>' + blogObj[i].blog_created_on +'</p></div><div class="updateBtn"><a href="javascript:void(0)" data-id=' + blogObj[i].id + ' onclick="blogServices.editBlog(this)"><span class="glyphicon glyphicon-pencil"></span></a><a href="javascript:void(0)" data-id=' + blogObj[i].id + ' onclick="blogServices.confirmDelete(this)"><span class="glyphicon glyphicon-trash"></span></a></div></div></div></div>'
         }
 
@@ -58,7 +58,13 @@ var blogServices = (function($) {
     function updateBlogdetails(blog_id) {
         var length = 300;
         $('#id-title-' + blog_id).html($('#editTitle').val());
-        $('#id-desc-' + blog_id).html($('#editDescription').val().substring(0, length)).append('...<a href="/blog_track/' + blog_id + '">Read More</a>');
+        if ($('#id-desc-' + blog_id).html($('#editDescription').val().substring(0, length > 200))) {
+            $('#id-desc-' + blog_id).html($('#editDescription').val().substring(0, length)).append('...<a href="/blog_track/' + blog_id + '">Read More</a>');
+        }
+        else {
+           $('#id-desc-' + blog_id).html($('#editDescription').val().substring(0, length)).append('...<a href="/blog_track/' + blog_id + '">view Details</a>');
+        }
+        
     }
 
     $(function() {

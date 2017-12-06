@@ -7,6 +7,7 @@ IntegerField,
 RadioField, 
 SelectField,
 SubmitField,
+BooleanField,
 validators
 ) 
 
@@ -16,7 +17,7 @@ GENDER =[('Male','M'),('Female','F')]
 class RegisterForm(FlaskForm):
     """ Registerform for registering users """
     name = StringField('*Name', [validators.Length(min=1, max=50)])
-    username = StringField('Username', [validators.Length(min=4, max=25)])
+    username = StringField('*Username', [validators.Length(min=4, max=25)])
     email = StringField('*Email', [validators.Length(min=6, max=50)])
     password = PasswordField('*Password', [
         validators.DataRequired(),
@@ -24,7 +25,16 @@ class RegisterForm(FlaskForm):
     ])
     confirm = PasswordField('*Confirm Password',[validators.DataRequired()])
     address = TextAreaField('Address', [validators.optional(), validators.length(max=200)])
+    submit= SubmitField("Register")
 
+# Login Form Class
+class LoginForm(FlaskForm):
+    email = StringField('Email', [validators.Length(min=1, max=64)])
+    password = PasswordField('Password',[validators.DataRequired()])
+    remember_me = BooleanField('Remember me',default=False)
+    submit= SubmitField("Log In")
+
+# Profile Edit Form Class
 class ProfileEditForm(FlaskForm):
     """ PrfoileEditform for editing users profile """
     username = StringField("Username",[validators.DataRequired()])

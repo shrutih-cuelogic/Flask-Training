@@ -20,7 +20,7 @@
                 </div>
             </div>
             <h2 class="headtext">Comments</h2>
-            <form action="" method="post" name=commentform class="user_reply-form">
+            <form action="#error-check" method="post" name=commentform class="user_reply-form" id="error-check">
                     {{form.hidden_tag()}}
                 <div class="form-group">
                     {{ form.content(rows="4",class="form-control") }}

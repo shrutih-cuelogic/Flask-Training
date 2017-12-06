@@ -5,3 +5,7 @@ flask_script
 flask_migrate
 flask_login
 flask_wtf
+
+# for oauth2 purpose use
+requests_oauthlib
+
