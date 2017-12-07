@@ -81,6 +81,9 @@ body .mainLayout {
 .loginContainer {
     margin-top: 100px;
 }
+.loginContainer .well {
+    background-color: #9E9E9E;
+}
 .container-fluid {
     padding-top: 35px;
     padding-bottom: 70px;
@@ -117,7 +120,7 @@ header {
 .Loginform {
     min-height: 20px;
     padding: 19px;
-    margin-bottom: 20px;
+    margin-bottom: 150px;
     background-color: rgba(181, 181, 181, 0.98);
     border: 1px solid #e3e3e3;
     border-radius: 4px;
@@ -128,8 +131,11 @@ header {
 .Loginform .submitBtn {
     margin: 20px auto;
     text-align: center;
+    width: 100px;
 }
-
+.Loginform .signUp a {
+    color: #1261a0;
+}
 .RegisterForm {
     min-height: 20px;
     padding: 19px;
@@ -230,6 +236,14 @@ footer {
     float: left;
     margin-left: -3px;
 }
+#blog-portfolio .jumbotron a {
+    background: #009688;
+    color: #fff;
+    width: 100px;
+    height: 40px;
+    margin-left: 18px;
+}
+
 #blog-portfolio .jumbotron .blog-portfolio-item {
     float: left;
     width: 100%;
@@ -267,6 +281,9 @@ footer {
 #blog-portfolio .jumbotron .blog-portfolio-item .blog-portfolio-description p {
     margin-bottom: 1.5em;
     margin: 0 0 10px;
+}
+#blog-portfolio .jumbotron .blog-portfolio-item .blog-portfolio-description .readMore a {
+    margin-left: 0px;
 }
 #blog-services {
     padding: 7em 0;
@@ -334,4 +351,75 @@ footer {
     position: absolute;
     top: 0;
     z-index: 99;
+}
+blockquote {
+    padding: 5px 20px;
+    margin: 20px 0px 20px;
+    font-size: 13.5px;
+    border-left: 5px solid #009688;
+}
+.Userimage {
+    width: 60px;
+}
+blockquote h4 {
+   font-size: 16px;
+}
+blockquote span {
+   font-size: 12px;
+}
+.replyCmnt {
+    margin-top: 12px;
+}
+blockquote .btn-change {
+    color: #fff;
+    background-color: #009688;
+    border-color: #009688;
+}
+blockquote .btn:hover {
+    color: #fff;
+    text-decoration: none;
+}
+.user_reply-form .btn-change {
+    color: #fff;
+    background-color: #009688;
+    border-color: #009688;
+}
+.gmail-parent{
+    text-align: center;
+    margin-bottom:30px;
+}
+/*    h4 { width:100%; text-align:center; border-bottom: 1px solid #ddd; line-height:0.1em; margin:20px 0 20px; } 
+    h4 span { background:#fff; padding:0 10px; }*/
+.or-seperator {
+    margin: 50px 0 15px;
+    text-align: center;
+    border-top: 1px solid #e0e0e0;
+}
+.or-seperator b {
+    padding: 0 10px;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 40px;
+    background: #fff;
+    display: inline-block;
+    border: 1px solid #e0e0e0;
+    border-radius: 50%;
+    position: relative;
+    top: -22px;
+    z-index: 1;
+}
+.social-btn {
+    box-sizing: border-box;
+}
+.social-btn .btn {
+    color: #fff;
+    margin: 10px 0;
+    font-size: 15px;
+    border-radius: 50px;
+    text-indent: 10px;
+    font-weight: normal;
+    border: none;
+    text-align: center;
 }

@@ -5,7 +5,8 @@
       <h3 class="text-center">Register</h3> 
       {% from "includes/_formhelpers.html" import render_field %}
       <div class="well RegisterForm">
-        <form method="POST" action="">
+        <form method="post" action="">
+          {{form.hidden_tag()}}
           <div class="row">
             <div class="form-group col-sm-6">
                 {{render_field(form.name, class_="form-control")}}
@@ -31,7 +32,7 @@
             </div>
           </div>
           <div class="submitBtn">
-            <input type="submit" class="btn btn-primary" value="Submit">
+            {{ form.submit(class_="btn btn-primary form-control")}}
           </div>
         </form>
       </div>

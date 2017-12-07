@@ -4,7 +4,7 @@ from datetime import datetime
 from app import db, lm
 from flask_login import UserMixin
 from hashlib import md5
-
+from werkzeug.security import generate_password_hash, check_password_hash
 # # Define a base model for other database tables to inherit
 # class Base(db.Model):
 
@@ -37,6 +37,9 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(192),
         nullable=False
     )
+    password_hash = db.Column(db.String(192),
+        nullable=False
+    )
     address = db.Column(db.String(192),
         nullable=True
     )
@@ -51,9 +54,26 @@ class User(db.Model, UserMixin):
         cascade="all,delete",
         lazy='dynamic'
     )
+    user_comments = db.relationship('UserComment',
+        backref='commenter',
+        cascade="all,delete",
+        lazy='dynamic'
+    )
+    tokens = db.Column(db.Text)
 
     def __str__(self):
         return '<User %r>' % (self.username)
+
+    @property
+    def password(self):
+        raise AttributeError("Password is not readable")
+
+    @password.setter
+    def password(self,password):
+        self.password_hash=generate_password_hash(password)
+
+    def verify_password(self,password):
+        return check_password_hash(self.password_hash,password)
 
     def avatar(self, size):
         return 'http://www.gravatar.com/avatar/%s?d=mm&s=%d' % (md5(self.email.encode('utf-8')).hexdigest(), size)
