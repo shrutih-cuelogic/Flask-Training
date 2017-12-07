@@ -48,7 +48,6 @@ body .mainLayout {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
-
 .trash {
     color: rgb(209, 91, 71);
 }
@@ -150,7 +149,11 @@ header {
     margin: 20px auto;
     text-align: center;
 }
-
+.RegisterForm .submitBtn {
+    margin: 20px auto;
+    text-align: center;
+    width: 120px;
+}
 .container-fluid {
     padding-top: 70px;
     padding-bottom: 70px;
@@ -170,11 +173,35 @@ header {
     z-index: 999;
 }
 .centered p {
-    font-size: 20px;
+    font-size: 1.16rem;
+    font-weight: 600;
+    font-family: Merriweather,'Helvetica Neue',Arial,sans-serif;
 }
 .centered p a {
     font-size: 30px;
-    color: #e32929;
+    color: #f05f40;
+}
+.centered hr {
+    max-width: 50px;
+    border-width: 3px;
+    border-color: #f05f40;
+    margin-left: 50%;
+    font-family: Merriweather,'Helvetica Neue',Arial,sans-serif;
+}
+.centered .btn-primary {
+    background-color: #f05f40;
+    border-color: #f05f40;
+}
+
+.centered .btn-xl {
+    padding: 1rem 2rem;
+}
+.centered .btn {
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 300px;
+    font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
 }
 .navbar-header a {
     color: #ffffff;
@@ -423,3 +450,5 @@ blockquote .btn:hover {
     border: none;
     text-align: center;
 }
+
+/* index page header css */
