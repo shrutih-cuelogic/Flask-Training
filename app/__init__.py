@@ -14,14 +14,15 @@ from production import ProdConfig
 
 
 # Define the WSGI application object
+is_prod = os.environ.get('IS_HEROKU', None)
+
 app = Flask(__name__)
 admin = Admin(app, name='sample', template_mode='bootstrap3')
 
 # Configurations
 import pdb
 pdb.set_trace()
-if os.path.isfile('devconfig.py'):
-
+if not is_prod:
 	app.config.from_object('config.DevConfig')
 else:
 	app.config.from_object('config.ProdConfig')
