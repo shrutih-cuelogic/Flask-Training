@@ -18,11 +18,14 @@ app = Flask(__name__)
 admin = Admin(app, name='sample', template_mode='bootstrap3')
 
 # Configurations
-app.config.from_object('config')
+try:
+	app.config.from_object('config')
+
+except:
+	app.config.from_object('ProdConfig')		
 # Define the database object which is imported
 # by modules and controllers
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost/testuser'
-app.config['SECRET_KEY'] = 'b240ac48e41e84a4278d195092289a8bdb08556b22f6760d'
+	
 db = SQLAlchemy(app)
 lm = LoginManager(app)
 lm.session_protection ='Strong'
