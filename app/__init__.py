@@ -18,12 +18,13 @@ app = Flask(__name__)
 admin = Admin(app, name='sample', template_mode='bootstrap3')
 
 # Configurations
+import pdb
+pdb.set_trace()
 if os.path.isfile('config.py'):
-	
+
 	app.config.from_object('config.DevConfig')
 else:
-	pass
-	#app.config.from_object('config.ProdConfig')
+	app.config.from_object('config.ProdConfig')
 
 # Define the database object which is imported
 # by modules and controllers
