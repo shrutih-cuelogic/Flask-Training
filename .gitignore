@@ -1,4 +1,4 @@
 *.pyc
 
 flask_blogapp/
-config.py
+devconfig.py
