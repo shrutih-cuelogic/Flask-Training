@@ -25,7 +25,7 @@ pdb.set_trace()
 if not is_prod:
 	app.config.from_object('config.DevConfig')
 else:
-	app.config.from_object('config.ProdConfig')
+	app.config.from_object(ProdConfig)
 
 # Define the database object which is imported
 # by modules and controllers
