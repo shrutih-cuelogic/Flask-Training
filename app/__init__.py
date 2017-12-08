@@ -22,7 +22,7 @@ try:
 	app.config.from_object('config')
 
 except:
-	app.config.from_object('ProdConfig')		
+	app.config.from_object('ProdConfig')
 # Define the database object which is imported
 # by modules and controllers
 	
