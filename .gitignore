@@ -1,0 +1,5 @@
+*.pyc
+
+# Distribution / packaging
+
+flask_blog/
