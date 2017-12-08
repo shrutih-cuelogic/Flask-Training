@@ -20,7 +20,7 @@ admin = Admin(app, name='sample', template_mode='bootstrap3')
 # Configurations
 import pdb
 pdb.set_trace()
-if os.path.isfile('config.py'):
+if os.path.isfile('devconfig.py'):
 
 	app.config.from_object('config.DevConfig')
 else:
