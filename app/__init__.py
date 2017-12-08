@@ -2,11 +2,10 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
-
 from flask_admin.contrib.sqla import ModelView
 from flask_login import LoginManager
 from werkzeug.utils import secure_filename
-
+from production import ProdConfig
 # UPLOAD_FOLDER = '/static/blog/images/uploads'
 # ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
@@ -19,8 +18,10 @@ admin = Admin(app, name='sample', template_mode='bootstrap3')
 
 # Configurations
 try:
-	app.config.from_object('config')
-
+	import pdb
+	pdb.set_trace()
+	app.config.from_object('config.DevConfig')
+	
 except:
 	app.config.from_object('ProdConfig')
 # Define the database object which is imported
