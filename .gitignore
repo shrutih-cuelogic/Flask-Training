@@ -1,0 +1,9 @@
+*.pyc
+
+# Distribution / packaging
+
+<<<<<<< HEAD:Flask-Pracs/.gitignore
+flask_blog/
+=======
+flask_blogapp/
+>>>>>>> master:.gitignore
