@@ -1,4 +1,5 @@
 # Import flask and template operators
+import os 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
@@ -17,13 +18,13 @@ app = Flask(__name__)
 admin = Admin(app, name='sample', template_mode='bootstrap3')
 
 # Configurations
-try:
-	import pdb
-	pdb.set_trace()
-	app.config.from_object('config.DevConfig')
+if os.path.isfile('config.py'):
 	
-except:
-	app.config.from_object('ProdConfig')
+	app.config.from_object('config.DevConfig')
+else:
+	pass
+	#app.config.from_object('config.ProdConfig')
+
 # Define the database object which is imported
 # by modules and controllers
 	
