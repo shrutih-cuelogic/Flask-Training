@@ -20,8 +20,7 @@ app = Flask(__name__)
 admin = Admin(app, name='sample', template_mode='bootstrap3')
 
 # Configurations
-import pdb
-pdb.set_trace()
+
 if not is_prod:
 	app.config.from_object('config.DevConfig')
 else:
