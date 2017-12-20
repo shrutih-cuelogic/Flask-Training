@@ -1,6 +1,6 @@
 from datetime import datetime
-from app import db, lm
-from app.auth.models import User
+from flask_blog import db, lm
+from flask_blog.auth.models import User
 
 
 #Define a Blog model

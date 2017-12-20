@@ -1,7 +1,7 @@
 # Import the database object (db) from the main application module
 # We will define this inside /app/__init__.py in the next sections.
 from datetime import datetime
-from app import db, lm
+from flask_blog import db, lm
 from flask_login import UserMixin
 from hashlib import md5
 from werkzeug.security import generate_password_hash, check_password_hash

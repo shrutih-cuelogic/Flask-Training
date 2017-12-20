@@ -6,6 +6,7 @@ from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_login import LoginManager
 from werkzeug.utils import secure_filename
+from devconfig import DevConfig
 from production import ProdConfig
 # UPLOAD_FOLDER = '/static/blog/images/uploads'
 # ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
@@ -22,7 +23,7 @@ admin = Admin(app, name='sample', template_mode='bootstrap3')
 # Configurations
 
 if not is_prod:
-	app.config.from_object('config.DevConfig')
+	app.config.from_object(DevConfig)
 else:
 	app.config.from_object(ProdConfig)
 
@@ -33,10 +34,10 @@ db = SQLAlchemy(app)
 lm = LoginManager(app)
 lm.session_protection ='Strong'
 
-from app.auth import views, models
-from app.blog import views, models
-from app.auth import auth as auth_blueprint
-from app.blog import blog_mod as blog_blueprint
+from flask_blog.auth import views, models
+from flask_blog.blog import views, models
+from flask_blog.auth import auth as auth_blueprint
+from flask_blog.blog import blog_mod as blog_blueprint
 
 # Register blueprint(s)
 app.register_blueprint(auth_blueprint)
@@ -48,6 +49,6 @@ admin.add_view(ModelView(models.User, db.session))
 admin.add_view(ModelView(models.Blog, db.session))
 admin.add_view(ModelView(models.UserComment, db.session))
 
-from app.auth.models import *
+from flask_blog.auth.models import *
 
 db.create_all()

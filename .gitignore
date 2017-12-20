@@ -1,6 +1,6 @@
 *.pyc
 *.pyc~
 flask_blogapp/
-
+venv/
 migrations/
 devconfig.py

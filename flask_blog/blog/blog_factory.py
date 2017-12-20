@@ -2,7 +2,7 @@ import factory
 from factory import alchemy, Sequence
 from . import app,db,auth
 from ..blog_mod.models import Blog
-from app.auth.auth_factory import UserFactory
+from flask_blog.auth.auth_factory import UserFactory
 
 
 class BlogFactory(factory.alchemy.SQLAlchemyModelFactory):

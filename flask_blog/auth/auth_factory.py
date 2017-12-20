@@ -1,8 +1,8 @@
 import factory
 from factory import alchemy, Sequence
 from . import app,db,auth
-from ..auth.models import User
-from app.blog.blog_factory import BlogFactory
+from flask_blog.auth.models import User
+from flask_blog.blog.blog_factory import BlogFactory
 
 
 class UserFactory(factory.alchemy.SQLAlchemyModelFactory):

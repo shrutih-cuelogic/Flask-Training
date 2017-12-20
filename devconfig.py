@@ -32,8 +32,8 @@ class Config(object):
     SECRET_KEY = 'b240ac48e41e84a4278d195092289a8bdb08556b22f6760d'
     SQLALCHEMY_TRACK_MODIFICATIONS =True
     FIXTURE_DIRS = (
-       'app/auth/fixtures/',
-       'app/blog/fixtures/'
+       'flask_blog/auth/fixtures/',
+       'flask_blog/blog/fixtures/'
     )
 
 class DevConfig(Config):
@@ -42,8 +42,8 @@ class DevConfig(Config):
     SECRET_KEY = 'b240ac48e41e84a4278d195092289a8bdb08556b22f6760d'
     SQLALCHEMY_TRACK_MODIFICATIONS =True
     FIXTURE_DIRS = (
-       'app/auth/fixtures/',
-       'app/blog/fixtures/'
+       'flask_blog/auth/fixtures/',
+       'flask_blog/blog/fixtures/'
     )
 
 class TestConfig(Config):
