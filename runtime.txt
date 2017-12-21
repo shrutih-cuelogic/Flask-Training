@@ -1,2 +1,2 @@
-python_full_version = "2.7.12"
+python_full_version = "2.7.14"
 
